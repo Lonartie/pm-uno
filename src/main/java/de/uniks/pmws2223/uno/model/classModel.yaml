@@ -1,4 +1,5 @@
 - c: 	org.fulib.classmodel.ClassModel
+  classes: 	card 	bot 	player 	game
   defaultCollectionType: 	c1
   defaultPropertyStyle: 	Bean
   defaultRoleType: 	"java.util.ArrayList<%s>"
@@ -6,10 +7,130 @@
   packageName: 	de.uniks.pmws2223.uno.model
   packageSrcFolder: 	"src/main/java/de/uniks/pmws2223/uno/model"
 
+- card: 	org.fulib.classmodel.Clazz
+  attributes: 	card_value 	card_color
+  model: 	c
+  modified: 	false
+  name: 	Card
+  propertyStyle: 	Bean
+
+- bot: 	org.fulib.classmodel.Clazz
+  model: 	c
+  modified: 	false
+  name: 	Bot
+  propertyStyle: 	Bean
+  superClass: 	player
+
+- player: 	org.fulib.classmodel.Clazz
+  attributes: 	player_name 	player_cards
+  model: 	c
+  modified: 	false
+  name: 	Player
+  propertyStyle: 	Bean
+  roles: 	player_game 	player_Game_currentPlayer
+  subClasses: 	bot
+
+- game: 	org.fulib.classmodel.Clazz
+  attributes: 	game_discardPile
+  model: 	c
+  modified: 	false
+  name: 	Game
+  propertyStyle: 	Bean
+  roles: 	game_players 	game_currentPlayer
+
 - c1: 	org.fulib.classmodel.CollectionType
   implClass: 	class java.util.ArrayList
   implTemplate: 	"java.util.ArrayList<%s>"
   itf: 	org.fulib.classmodel.CollectionInterface.List
   qualifiedImplName: 	java.util.ArrayList
   simpleImplName: 	ArrayList
+
+- card_value: 	org.fulib.classmodel.Attribute
+  clazz: 	card
+  id: 	Card_value
+  modified: 	false
+  name: 	value
+  propertyStyle: 	Bean
+  type: 	int
+  typeSignature: 	int
+
+- card_color: 	org.fulib.classmodel.Attribute
+  clazz: 	card
+  id: 	Card_color
+  modified: 	false
+  name: 	color
+  propertyStyle: 	Bean
+  type: 	CardColor
+  typeSignature: 	CardColor
+
+- player_name: 	org.fulib.classmodel.Attribute
+  clazz: 	player
+  id: 	Player_name
+  modified: 	false
+  name: 	name
+  propertyStyle: 	Bean
+  type: 	String
+  typeSignature: 	String
+
+- player_cards: 	org.fulib.classmodel.Attribute
+  clazz: 	player
+  collectionType: 	c1
+  id: 	Player_cards
+  modified: 	false
+  name: 	cards
+  propertyStyle: 	Bean
+  type: 	Card
+  typeSignature: 	Card
+
+- player_game: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	1
+  clazz: 	player
+  id: 	Player_game
+  modified: 	false
+  name: 	game
+  other: 	game_players
+  propertyStyle: 	Bean
+
+- player_Game_currentPlayer: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	0
+  clazz: 	player
+  collectionType: 	c1
+  id: 	Player_Game_currentPlayer
+  modified: 	false
+  other: 	game_currentPlayer
+  propertyStyle: 	Bean
+  roleType: 	"java.util.ArrayList<%s>"
+
+- game_discardPile: 	org.fulib.classmodel.Attribute
+  clazz: 	game
+  id: 	Game_discardPile
+  modified: 	false
+  name: 	discardPile
+  propertyStyle: 	Bean
+  type: 	Card
+  typeSignature: 	Card
+
+- game_players: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	42
+  clazz: 	game
+  collectionType: 	c1
+  id: 	Game_players
+  modified: 	false
+  name: 	players
+  other: 	player_game
+  propertyStyle: 	Bean
+  roleType: 	"java.util.ArrayList<%s>"
+
+- game_currentPlayer: 	org.fulib.classmodel.AssocRole
+  aggregation: 	false
+  cardinality: 	1
+  clazz: 	game
+  id: 	Game_currentPlayer
+  modified: 	false
+  name: 	currentPlayer
+  other: 	player_Game_currentPlayer
+  propertyStyle: 	Bean
 
