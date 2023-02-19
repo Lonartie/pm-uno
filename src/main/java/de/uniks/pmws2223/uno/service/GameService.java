@@ -3,11 +3,17 @@ package de.uniks.pmws2223.uno.service;
 import de.uniks.pmws2223.uno.Constants;
 import de.uniks.pmws2223.uno.model.*;
 
-import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameService {
+
+    private Random random = new Random();
+
+    public void setRandom(Random random) {
+        this.random = random;
+    }
 
     public void startGame(Game game, String playerName, int botCount) {
         game.setClockwise(true);
@@ -22,7 +28,7 @@ public class GameService {
         game.setDiscardPile(drawCard());
 
         if (requiresColorWish(game)) {
-            game.setColorWish(CardColor.values()[(int) (Math.random() * 4)]);
+            game.setColorWish(CardColor.values()[random.nextInt(CardColor.values().length - 1)]);
         }
     }
 
@@ -156,7 +162,7 @@ public class GameService {
     }
 
     private Card drawCard() {
-        Card randomCard = Constants.DECK.get((int) (Math.random() * Constants.DECK.size()));
+        Card randomCard = Constants.DECK.get(random.nextInt(Constants.DECK.size()));
         return new Card().setValue(randomCard.getValue()).setColor(randomCard.getColor());
     }
 }

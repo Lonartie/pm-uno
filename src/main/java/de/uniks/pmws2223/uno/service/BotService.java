@@ -6,8 +6,16 @@ import de.uniks.pmws2223.uno.model.CardColor;
 import de.uniks.pmws2223.uno.model.Game;
 
 import java.util.Optional;
+import java.util.Random;
 
 public class BotService {
+
+    private Random random = new Random();
+
+    public void setRandom(Random random) {
+        this.random = random;
+    }
+
     public boolean play(GameService gameService, Game game, Bot bot) {
         boolean won = false;
         Optional<Card> bestCard = getBestCard(gameService, game, bot);
@@ -56,7 +64,7 @@ public class BotService {
             if (nextCard.isPresent() && nextCard.get() != CardColor.BLACK) {
                 wish = nextCard.get();
             } else {
-                wish = CardColor.values()[(int) (Math.random() * 4)];
+                wish = CardColor.values()[random.nextInt(CardColor.values().length - 1)];
             }
 
             return gameService.wishColor(game, bot, wish);
