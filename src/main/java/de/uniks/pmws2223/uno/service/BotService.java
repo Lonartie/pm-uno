@@ -27,7 +27,7 @@ public class BotService {
             gameService.drawCard(game, bot);
         }
 
-        won = wischColor(gameService, game, bot) || won;
+        won = wishColor(gameService, game, bot) || won;
         return won;
     }
 
@@ -58,7 +58,7 @@ public class BotService {
                 .count();
     }
 
-    private boolean wischColor(GameService gameService, Game game, Bot bot) {
+    private boolean wishColor(GameService gameService, Game game, Bot bot) {
         if (gameService.requiresColorWish(game)) {
             Optional<CardColor> nextCard = getBestColor(bot);
             CardColor wish;
