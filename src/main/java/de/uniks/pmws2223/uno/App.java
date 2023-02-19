@@ -14,8 +14,17 @@ import java.io.IOException;
 public class App extends Application {
     private Stage stage;
     private Controller controller;
-    private final GameService gameService = new GameService();
-    private final BotService botService = new BotService();
+    private final GameService gameService;
+    private final BotService botService;
+
+    public App() {
+        this(new GameService(), new BotService());
+    }
+
+    public App(GameService gameService, BotService botService) {
+        this.gameService = gameService;
+        this.botService = botService;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
