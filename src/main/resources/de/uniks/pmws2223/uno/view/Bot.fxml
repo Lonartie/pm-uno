@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" prefHeight="163.0" prefWidth="488.0" spacing="15.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.uniks.pmws2223.uno.controller.BotController">
+   <children>
+      <Text fx:id="botNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Bot 1" />
+      <ScrollPane fx:id="botCardsPane" maxHeight="86.0" minHeight="86.0" prefHeight="86.0">
+         <content>
+            <HBox fx:id="botCardsLayout" alignment="CENTER_LEFT" spacing="1.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>

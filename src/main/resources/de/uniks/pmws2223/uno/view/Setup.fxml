@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="360.0" prefWidth="580.0" spacing="15.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.uniks.pmws2223.uno.controller.SetupController">
+   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
+   <TextField fx:id="nameField" promptText="Max Mustermann" />
+   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bots:" />
+   <Slider fx:id="botsSlider" blockIncrement="1.0" majorTickUnit="1.0" max="3.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+   <Separator orientation="VERTICAL" prefHeight="9999999.0" visible="false" />
+   <HBox>
+      <Separator prefWidth="9999999.0" visible="false" />
+      <Button minWidth="50.0" mnemonicParsing="false" onAction="#play" text="Play" />
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
+   </HBox>
+   <padding>
+      <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+   </padding>
+</VBox>
