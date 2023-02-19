@@ -17,6 +17,11 @@ public class GenModel implements ClassModelDecorator {
         public List<Player> players;
 
         public Card discardPile;
+
+        @Type("CardColor")
+        public Object colorWish;
+
+        public boolean clockwise;
     }
 
     public class Player {

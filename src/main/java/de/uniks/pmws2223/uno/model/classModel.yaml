@@ -31,7 +31,7 @@
   subClasses: 	bot
 
 - game: 	org.fulib.classmodel.Clazz
-  attributes: 	game_discardPile
+  attributes: 	game_discardPile 	game_colorWish 	game_clockwise
   model: 	c
   modified: 	false
   name: 	Game
@@ -111,6 +111,24 @@
   propertyStyle: 	Bean
   type: 	Card
   typeSignature: 	Card
+
+- game_colorWish: 	org.fulib.classmodel.Attribute
+  clazz: 	game
+  id: 	Game_colorWish
+  modified: 	false
+  name: 	colorWish
+  propertyStyle: 	Bean
+  type: 	CardColor
+  typeSignature: 	CardColor
+
+- game_clockwise: 	org.fulib.classmodel.Attribute
+  clazz: 	game
+  id: 	Game_clockwise
+  modified: 	false
+  name: 	clockwise
+  propertyStyle: 	Bean
+  type: 	boolean
+  typeSignature: 	boolean
 
 - game_players: 	org.fulib.classmodel.AssocRole
   aggregation: 	false

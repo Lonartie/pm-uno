@@ -7,8 +7,8 @@ public class Card
    public static final String PROPERTY_VALUE = "value";
    public static final String PROPERTY_COLOR = "color";
    private int value;
-   protected PropertyChangeSupport listeners;
    private CardColor color;
+   protected PropertyChangeSupport listeners;
 
    public int getValue()
    {

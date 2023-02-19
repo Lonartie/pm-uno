@@ -8,31 +8,17 @@ import java.beans.PropertyChangeSupport;
 
 public class Game
 {
-   public static final String PROPERTY_DISCARD_PILE = "discardPile";
    public static final String PROPERTY_PLAYERS = "players";
+   public static final String PROPERTY_DISCARD_PILE = "discardPile";
+   public static final String PROPERTY_COLOR_WISH = "colorWish";
+   public static final String PROPERTY_CLOCKWISE = "clockwise";
    public static final String PROPERTY_CURRENT_PLAYER = "currentPlayer";
-   private Card discardPile;
    private List<Player> players;
+   private Card discardPile;
    protected PropertyChangeSupport listeners;
+   private CardColor colorWish;
+   private boolean clockwise;
    private Player currentPlayer;
-
-   public Card getDiscardPile()
-   {
-      return this.discardPile;
-   }
-
-   public Game setDiscardPile(Card value)
-   {
-      if (Objects.equals(value, this.discardPile))
-      {
-         return this;
-      }
-
-      final Card oldValue = this.discardPile;
-      this.discardPile = value;
-      this.firePropertyChange(PROPERTY_DISCARD_PILE, oldValue, value);
-      return this;
-   }
 
    public List<Player> getPlayers()
    {
@@ -100,6 +86,60 @@ public class Game
       return this;
    }
 
+   public Card getDiscardPile()
+   {
+      return this.discardPile;
+   }
+
+   public Game setDiscardPile(Card value)
+   {
+      if (Objects.equals(value, this.discardPile))
+      {
+         return this;
+      }
+
+      final Card oldValue = this.discardPile;
+      this.discardPile = value;
+      this.firePropertyChange(PROPERTY_DISCARD_PILE, oldValue, value);
+      return this;
+   }
+
+   public CardColor getColorWish()
+   {
+      return this.colorWish;
+   }
+
+   public Game setColorWish(CardColor value)
+   {
+      if (Objects.equals(value, this.colorWish))
+      {
+         return this;
+      }
+
+      final CardColor oldValue = this.colorWish;
+      this.colorWish = value;
+      this.firePropertyChange(PROPERTY_COLOR_WISH, oldValue, value);
+      return this;
+   }
+
+   public boolean isClockwise()
+   {
+      return this.clockwise;
+   }
+
+   public Game setClockwise(boolean value)
+   {
+      if (value == this.clockwise)
+      {
+         return this;
+      }
+
+      final boolean oldValue = this.clockwise;
+      this.clockwise = value;
+      this.firePropertyChange(PROPERTY_CLOCKWISE, oldValue, value);
+      return this;
+   }
+
    public Player getCurrentPlayer()
    {
       return this.currentPlayer;
@@ -116,6 +156,12 @@ public class Game
       this.currentPlayer = value;
       this.firePropertyChange(PROPERTY_CURRENT_PLAYER, oldValue, value);
       return this;
+   }
+
+   public void removeYou()
+   {
+      this.withoutPlayers(new ArrayList<>(this.getPlayers()));
+      this.setCurrentPlayer(null);
    }
 
    public boolean firePropertyChange(String propertyName, Object oldValue, Object newValue)
@@ -135,11 +181,5 @@ public class Game
          this.listeners = new PropertyChangeSupport(this);
       }
       return this.listeners;
-   }
-
-   public void removeYou()
-   {
-      this.withoutPlayers(new ArrayList<>(this.getPlayers()));
-      this.setCurrentPlayer(null);
    }
 }

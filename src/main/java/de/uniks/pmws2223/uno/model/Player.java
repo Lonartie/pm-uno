@@ -5,16 +5,44 @@ import java.util.Objects;
 import java.util.Collections;
 import java.util.Collection;
 import java.beans.PropertyChangeSupport;
+import java.util.Arrays;
 
 public class Player
 {
+   public static final String PROPERTY_GAME = "game";
    public static final String PROPERTY_NAME = "name";
    public static final String PROPERTY_CARDS = "cards";
-   public static final String PROPERTY_GAME = "game";
+   private Game game;
    private String name;
    private List<Card> cards;
-   private Game game;
    protected PropertyChangeSupport listeners;
+
+   public Game getGame()
+   {
+      return this.game;
+   }
+
+   public Player setGame(Game value)
+   {
+      if (this.game == value)
+      {
+         return this;
+      }
+
+      final Game oldValue = this.game;
+      if (this.game != null)
+      {
+         this.game = null;
+         oldValue.withoutPlayers(this);
+      }
+      this.game = value;
+      if (value != null)
+      {
+         value.withPlayers(this);
+      }
+      this.firePropertyChange(PROPERTY_GAME, oldValue, value);
+      return this;
+   }
 
    public String getName()
    {
@@ -97,31 +125,17 @@ public class Player
       return this;
    }
 
-   public Game getGame()
+   @Override
+   public String toString()
    {
-      return this.game;
+      final StringBuilder result = new StringBuilder();
+      result.append(' ').append(this.getName());
+      return result.substring(1);
    }
 
-   public Player setGame(Game value)
+   public void removeYou()
    {
-      if (this.game == value)
-      {
-         return this;
-      }
-
-      final Game oldValue = this.game;
-      if (this.game != null)
-      {
-         this.game = null;
-         oldValue.withoutPlayers(this);
-      }
-      this.game = value;
-      if (value != null)
-      {
-         value.withPlayers(this);
-      }
-      this.firePropertyChange(PROPERTY_GAME, oldValue, value);
-      return this;
+      this.setGame(null);
    }
 
    public boolean firePropertyChange(String propertyName, Object oldValue, Object newValue)
@@ -141,18 +155,5 @@ public class Player
          this.listeners = new PropertyChangeSupport(this);
       }
       return this.listeners;
-   }
-
-   @Override
-   public String toString()
-   {
-      final StringBuilder result = new StringBuilder();
-      result.append(' ').append(this.getName());
-      return result.substring(1);
-   }
-
-   public void removeYou()
-   {
-      this.setGame(null);
    }
 }
