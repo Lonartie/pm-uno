@@ -12,8 +12,9 @@ public class BotService {
 
     private Random random = new Random();
 
-    public void setRandom(Random random) {
+    public BotService setRandom(Random random) {
         this.random = random;
+        return this;
     }
 
     public boolean play(GameService gameService, Game game, Bot bot) {

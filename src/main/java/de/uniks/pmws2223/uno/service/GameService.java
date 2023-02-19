@@ -11,8 +11,9 @@ public class GameService {
 
     private Random random = new Random();
 
-    public void setRandom(Random random) {
+    public GameService setRandom(Random random) {
         this.random = random;
+        return this;
     }
 
     public void startGame(Game game, String playerName, int botCount) {
@@ -50,7 +51,7 @@ public class GameService {
         return won;
     }
 
-    public boolean gameOver(Game game) {
+    public boolean isGameOver(Game game) {
         return game.getPlayers().size() == 1;
     }
 

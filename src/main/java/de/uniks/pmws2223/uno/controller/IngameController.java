@@ -116,7 +116,7 @@ public class IngameController implements Controller {
             winners.add(((Player)propertyChangeEvent.getOldValue()).getName());
         }
 
-        if (gameService.gameOver(game)) {
+        if (gameService.isGameOver(game)) {
             winners.add(game.getPlayers().get(0).getName());
             app.show(new GameOverController(app, gameService, botService, winners));
         }

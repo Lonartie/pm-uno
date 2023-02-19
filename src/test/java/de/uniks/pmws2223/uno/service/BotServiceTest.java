@@ -15,7 +15,7 @@ public class BotServiceTest {
     Game game = new Game();
 
     @Test
-    public void BotPrefersLeastColorTest() {
+    public void botPrefersLeastColorTest() {
         Bot bot = new Bot();
         game.withPlayers(bot);
         bot.withCards(
@@ -38,7 +38,7 @@ public class BotServiceTest {
     }
 
     @Test
-    public void BotWishesMostColorTest() {
+    public void botWishesMostColorTest() {
         Bot bot = new Bot();
         game.withPlayers(bot);
         bot.withCards(
@@ -64,7 +64,7 @@ public class BotServiceTest {
     }
 
     @Test
-    public void BotWishesRandomColorTest() {Bot bot = new Bot();
+    public void botWishesRandomColorTest() {Bot bot = new Bot();
         botService.setRandom(new Random(42));
         game.withPlayers(bot);
         bot.withCards(
