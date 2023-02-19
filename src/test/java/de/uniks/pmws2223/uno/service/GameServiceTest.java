@@ -10,12 +10,18 @@ import java.util.Random;
 import static org.junit.Assert.*;
 
 public class GameServiceTest {
-    Random random = new Random(42);
-    GameService gameService = new GameService().setRandom(random);
+    GameService gameService = new GameService();
     Game game = new Game();
+
+    private void initRandom() {
+        Random random = new Random(42);
+        gameService.setRandom(random);
+    }
 
     @Test
     public void startGameTest() {
+        initRandom();
+
         gameService.startGame(game, "Lonartie", 2);
 
         // game has 3 players, 1 human and 2 bots
@@ -39,6 +45,8 @@ public class GameServiceTest {
 
     @Test
     public void playCardTest() {
+        initRandom();
+
         gameService.startGame(game, "Lonartie", 2);
 
         Player player = game.getPlayers().get(0);
@@ -115,6 +123,8 @@ public class GameServiceTest {
 
     @Test
     public void drawCardTest() {
+        initRandom();
+
         gameService.startGame(game, "Lonartie", 2);
         Player player = game.getPlayers().get(0);
 

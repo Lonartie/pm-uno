@@ -17,7 +17,7 @@
    <Separator orientation="VERTICAL" prefHeight="9999999.0" visible="false" />
    <HBox>
       <Separator prefWidth="9999999.0" visible="false" />
-      <Button minWidth="50.0" mnemonicParsing="false" onAction="#play" text="Play" />
+      <Button fx:id="playButton" minWidth="50.0" mnemonicParsing="false" onAction="#play" text="Play" />
       <VBox.margin>
          <Insets />
       </VBox.margin>

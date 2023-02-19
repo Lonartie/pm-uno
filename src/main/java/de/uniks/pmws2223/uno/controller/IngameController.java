@@ -124,9 +124,9 @@ public class IngameController implements Controller {
 
     private void updateColorWish(PropertyChangeEvent propertyChangeEvent) {
         if (game.getColorWish() == null) {
-            discardPileParent.setStyle("-fx-border-color: black");
+            discardPileParent.setStyle("-fx-border-color: black;");
         } else {
-            discardPileParent.setStyle("-fx-border-width: 2;-fx-border-color: " + game.getColorWish().name().toLowerCase());
+            discardPileParent.setStyle("-fx-border-width: 2;-fx-border-color: " + game.getColorWish().name().toLowerCase() + ";");
         }
     }
 

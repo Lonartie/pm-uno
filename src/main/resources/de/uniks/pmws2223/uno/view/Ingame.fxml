@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="334.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.uniks.pmws2223.uno.controller.IngameController">
+<VBox fx:id="mainLayout" alignment="CENTER" prefHeight="334.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.uniks.pmws2223.uno.controller.IngameController">
    <children>
       <HBox fx:id="botsLayout" prefHeight="100.0" prefWidth="200.0" spacing="15.0" />
       <Separator orientation="VERTICAL" prefHeight="9999999.0" visible="false" />
@@ -42,10 +42,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Pane maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onMouseClicked="#wishYellow" prefHeight="30.0" prefWidth="30.0" style="-fx-border-radius: 3; -fx-background-radius: 3; -fx-background-color: yellow; -fx-border-color: black;" />
-                  <Pane maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onMouseClicked="#wishGreen" prefHeight="30.0" prefWidth="30.0" style="-fx-border-radius: 3; -fx-background-radius: 3; -fx-background-color: green; -fx-border-color: black;" GridPane.columnIndex="1" />
-                  <Pane maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onMouseClicked="#wishRed" prefHeight="30.0" prefWidth="30.0" style="-fx-border-radius: 3; -fx-background-radius: 3; -fx-background-color: red; -fx-border-color: black;" GridPane.rowIndex="1" />
-                  <Pane maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onMouseClicked="#wishBlue" prefHeight="30.0" prefWidth="30.0" style="-fx-border-radius: 3; -fx-background-radius: 3; -fx-background-color: blue; -fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Pane fx:id="yellowButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onMouseClicked="#wishYellow" prefHeight="30.0" prefWidth="30.0" style="-fx-border-radius: 3; -fx-background-radius: 3; -fx-background-color: yellow; -fx-border-color: black;" />
+                  <Pane fx:id="greenButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onMouseClicked="#wishGreen" prefHeight="30.0" prefWidth="30.0" style="-fx-border-radius: 3; -fx-background-radius: 3; -fx-background-color: green; -fx-border-color: black;" GridPane.columnIndex="1" />
+                  <Pane fx:id="redButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onMouseClicked="#wishRed" prefHeight="30.0" prefWidth="30.0" style="-fx-border-radius: 3; -fx-background-radius: 3; -fx-background-color: red; -fx-border-color: black;" GridPane.rowIndex="1" />
+                  <Pane fx:id="blueButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" onMouseClicked="#wishBlue" prefHeight="30.0" prefWidth="30.0" style="-fx-border-radius: 3; -fx-background-radius: 3; -fx-background-color: blue; -fx-border-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

@@ -22,7 +22,7 @@
       <HBox>
          <children>
             <Separator prefWidth="9999999.0" visible="false" />
-            <Button minWidth="60.0" mnemonicParsing="false" onAction="#setup" text="Setup" />
+            <Button fx:id="setupButton" minWidth="60.0" mnemonicParsing="false" onAction="#setup" text="Setup" />
          </children>
       </HBox>
    </children>
