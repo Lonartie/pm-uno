@@ -1,7 +1,6 @@
 package de.uniks.pmws2223.uno;
 
 import de.uniks.pmws2223.uno.model.CardColor;
-import de.uniks.pmws2223.uno.model.Game;
 import de.uniks.pmws2223.uno.service.BotService;
 import de.uniks.pmws2223.uno.service.GameService;
 import javafx.geometry.Point2D;
@@ -60,7 +59,6 @@ public class GameTest extends ApplicationTest {
         assertHasNCards(botCardBox(1), 7);
         assertHasNCards(botCardBox(2), 7);
         assertHasNCards(playerCardBox(), 7);
-
 
         // discard pile has red reverse card
         checkDiscardPile(CardColor.RED, Constants.REVERSE);

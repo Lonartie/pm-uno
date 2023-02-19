@@ -13,7 +13,7 @@
 
 <VBox fx:id="mainLayout" alignment="CENTER" prefHeight="334.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.uniks.pmws2223.uno.controller.IngameController">
    <children>
-      <HBox fx:id="botsLayout" prefHeight="100.0" prefWidth="200.0" spacing="15.0" />
+      <HBox fx:id="botsLayout" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" />
       <Separator orientation="VERTICAL" prefHeight="9999999.0" visible="false" />
       <HBox fx:id="pilesLayout" alignment="CENTER" spacing="50.0">
          <children>
