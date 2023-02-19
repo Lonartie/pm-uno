@@ -1,5 +1,6 @@
 package de.uniks.pmws2223.uno.controller;
 
+import de.uniks.pmws2223.uno.Constants;
 import de.uniks.pmws2223.uno.Main;
 import de.uniks.pmws2223.uno.model.Bot;
 import de.uniks.pmws2223.uno.model.Card;
@@ -19,7 +20,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
-import java.util.function.Consumer;
 
 public class BotController implements Controller {
     @FXML
@@ -90,7 +90,7 @@ public class BotController implements Controller {
                     botService.play(gameService, game, bot);
                 });
             }
-        }, 2000);
+        }, Constants.BOT_DELAY);
     }
 
     private void updateCurrentPlayer(PropertyChangeEvent propertyChangeEvent) {

@@ -18,10 +18,10 @@ public class SetupController implements Controller {
     public TextField nameField;
     @FXML
     public Slider botsSlider;
-    private App app;
-    private GameService gameService;
-    private BotService botService;
-    private Game game;
+    private final App app;
+    private final GameService gameService;
+    private final BotService botService;
+    private final Game game;
 
     public SetupController(App app, GameService gameService, BotService botService) {
         this.app = app;
@@ -44,8 +44,7 @@ public class SetupController implements Controller {
     public Parent render() throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/Setup.fxml"));
         loader.setControllerFactory(c -> this);
-        Parent parent = loader.load();
-        return parent;
+        return loader.load();
     }
 
     @Override

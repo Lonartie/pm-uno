@@ -145,11 +145,7 @@ public class GameService {
 
     private void dealCards(Game game) {
         for (Player player : game.getPlayers()) {
-            if (player instanceof Bot) {
-                player.withCards(drawCards(7));
-            } else {
-                player.withCards(drawCards(7));
-            }
+            player.withCards(drawCards(Constants.INITIAL_CARD_COUNT));
         }
     }
 

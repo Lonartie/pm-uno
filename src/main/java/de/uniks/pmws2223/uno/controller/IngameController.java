@@ -43,6 +43,7 @@ public class IngameController implements Controller {
         this.game = game;
         this.gameService = gameService;
         this.botService = botService;
+        //noinspection OptionalGetWithoutIsPresent
         player = game.getPlayers()
                 .stream()
                 .filter(p -> !(p instanceof Bot))

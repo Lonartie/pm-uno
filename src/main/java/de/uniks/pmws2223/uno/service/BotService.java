@@ -43,7 +43,7 @@ public class BotService {
                 .min((c1, c2) -> countColorCards(bot, c1.getColor()) - countColorCards(bot, c2.getColor()));
     }
 
-    private Optional<CardColor> getBestColor(GameService gameService, Game game, Bot bot) {
+    private Optional<CardColor> getBestColor(Bot bot) {
         Optional<Card> bestCard = bot.getCards().stream()
                 .filter(c -> c.getColor() != CardColor.BLACK)
                 .max((c1, c2) -> countColorCards(bot, c1.getColor()) - countColorCards(bot, c2.getColor()));
@@ -59,7 +59,7 @@ public class BotService {
 
     private boolean wischColor(GameService gameService, Game game, Bot bot) {
         if (gameService.requiresColorWish(game)) {
-            Optional<CardColor> nextCard = getBestColor(gameService, game, bot);
+            Optional<CardColor> nextCard = getBestColor(bot);
             CardColor wish;
             if (nextCard.isPresent() && nextCard.get() != CardColor.BLACK) {
                 wish = nextCard.get();

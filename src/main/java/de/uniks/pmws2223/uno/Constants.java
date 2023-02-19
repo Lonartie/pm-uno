@@ -13,6 +13,8 @@ public class Constants {
     public static final int SKIP = 12;
     public static final int WILD = 13;
     public static final Map<Integer, String> CARD_NAMES = new HashMap<>();
+    public static final long BOT_DELAY = 1000;
+    public static final int INITIAL_CARD_COUNT = 7;
 
     static {
         for (CardColor color : Arrays.stream(CardColor.values())
