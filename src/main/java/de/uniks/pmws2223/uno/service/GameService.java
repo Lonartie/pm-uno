@@ -33,7 +33,6 @@ public class GameService {
             game.setDiscardPile(card);
             game.setColorWish(null);
 
-            System.out.println("Requires color wish: " + requiresColorWish(game));
             if (!requiresColorWish(game)) {
                 nextPlayer(game, handleCardEffeckt(game, card));
                 if (hasPlayerWon(player)) {
@@ -135,7 +134,6 @@ public class GameService {
             getNextPlayer(game, 1).withCards(drawCards(2));
             increment = 2;
         }
-        System.out.println("Increment: " + increment);
         return increment;
     }
 
