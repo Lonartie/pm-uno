@@ -110,15 +110,13 @@ public class GameServiceTest {
         game.setCurrentPlayer(player);
         card = player.getCards().get(0); // black wildcard
 
-        // player wins the game and is removed from the players list
+        // player wins the game
         assertFalse(gameService.playCard(game, player, card));
         assertTrue(gameService.wishColor(game, player, CardColor.RED));
-        assertEquals(1, game.getPlayers().size());
 
         // game is over
         assertTrue(gameService.isGameOver(game));
         assertTrue(gameService.hasPlayerWon(player));
-        assertFalse(gameService.hasPlayerWon(game.getPlayers().get(0)));
     }
 
     @Test

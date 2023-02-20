@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
@@ -14,6 +15,8 @@
    <TextField fx:id="nameField" promptText="Max Mustermann" />
    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bots:" />
    <Slider fx:id="botsSlider" blockIncrement="1.0" majorTickUnit="1.0" max="3.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mode:" />
+   <ComboBox fx:id="modeComboBox" prefWidth="9999999.0" />
    <Separator orientation="VERTICAL" prefHeight="9999999.0" visible="false" />
    <HBox>
       <Separator prefWidth="9999999.0" visible="false" />

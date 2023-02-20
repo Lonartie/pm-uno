@@ -34,7 +34,7 @@ public class BotController implements Controller {
     private final GameService gameService;
     private final BotService botService;
     private final List<CardController> cardControllers = new ArrayList<>();
-    private final Timer timer = new Timer();
+    private Timer timer = new Timer();
 
     public BotController(Bot bot, Game game, GameService gameService, BotService botService) {
         this.bot = bot;
@@ -73,6 +73,7 @@ public class BotController implements Controller {
     @Override
     public void destroy() {
         timer.cancel();
+        timer = null;
 
         bot.listeners().removePropertyChangeListener(Bot.PROPERTY_CARDS, this::updateCards);
         game.listeners().removePropertyChangeListener(Game.PROPERTY_CURRENT_PLAYER, this::updateCurrentPlayer);
@@ -96,7 +97,9 @@ public class BotController implements Controller {
     private void updateCurrentPlayer(PropertyChangeEvent propertyChangeEvent) {
         if (propertyChangeEvent != null && propertyChangeEvent.getNewValue() == bot) {
             botCardsPane.setStyle("-fx-border-color: red;-fx-border-width: 3;");
-            play();
+            if (timer != null) {
+                play();
+            }
         } else {
             botCardsPane.setStyle("");
         }

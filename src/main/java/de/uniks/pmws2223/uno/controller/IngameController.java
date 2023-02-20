@@ -1,6 +1,7 @@
 package de.uniks.pmws2223.uno.controller;
 
 import de.uniks.pmws2223.uno.App;
+import de.uniks.pmws2223.uno.Constants;
 import de.uniks.pmws2223.uno.Main;
 import de.uniks.pmws2223.uno.model.*;
 import de.uniks.pmws2223.uno.service.BotService;
@@ -81,7 +82,11 @@ public class IngameController implements Controller {
         game.listeners().addPropertyChangeListener(Game.PROPERTY_DISCARD_PILE, this::updateDiscardPile);
         game.listeners().addPropertyChangeListener(Game.PROPERTY_CURRENT_PLAYER, this::updateCurrentPlayer);
         game.listeners().addPropertyChangeListener(Game.PROPERTY_COLOR_WISH, this::updateColorWish);
-        game.listeners().addPropertyChangeListener(Game.PROPERTY_PLAYERS, this::checkGameOver);
+        if (gameService.getGameMode().equals(Constants.GAME_MODE_1)) {
+            game.listeners().addPropertyChangeListener(Game.PROPERTY_DISCARD_PILE, this::checkGameOver);
+        } else {
+            game.listeners().addPropertyChangeListener(Game.PROPERTY_PLAYERS, this::checkGameOver);
+        }
 
         updateCards(null);
         updateDiscardPile(null);
@@ -97,7 +102,11 @@ public class IngameController implements Controller {
         game.listeners().removePropertyChangeListener(Game.PROPERTY_DISCARD_PILE, this::updateDiscardPile);
         game.listeners().removePropertyChangeListener(Game.PROPERTY_CURRENT_PLAYER, this::updateCurrentPlayer);
         game.listeners().removePropertyChangeListener(Game.PROPERTY_COLOR_WISH, this::updateColorWish);
-        game.listeners().removePropertyChangeListener(Game.PROPERTY_PLAYERS, this::checkGameOver);
+        if (gameService.getGameMode().equals(Constants.GAME_MODE_1)) {
+            game.listeners().removePropertyChangeListener(Game.PROPERTY_DISCARD_PILE, this::checkGameOver);
+        } else {
+            game.listeners().removePropertyChangeListener(Game.PROPERTY_PLAYERS, this::checkGameOver);
+        }
 
         if (discardPileController != null) {
             discardPileController.destroy();
@@ -112,12 +121,18 @@ public class IngameController implements Controller {
     }
 
     private void checkGameOver(PropertyChangeEvent propertyChangeEvent) {
-        if (propertyChangeEvent != null && propertyChangeEvent.getNewValue() == null) {
-            winners.add(((Player)propertyChangeEvent.getOldValue()).getName());
+        if (gameService.getGameMode().equals(Constants.GAME_MODE_2)) {
+            if (propertyChangeEvent != null && propertyChangeEvent.getNewValue() == null) {
+                winners.add(((Player) propertyChangeEvent.getOldValue()).getName());
+            }
         }
 
         if (gameService.isGameOver(game)) {
-            winners.add(game.getPlayers().get(0).getName());
+            if (gameService.getGameMode().equals(Constants.GAME_MODE_2)) {
+                winners.add(game.getPlayers().get(0).getName());
+            } else {
+                winners.add(gameService.getWinner(game).toString());
+            }
             app.show(new GameOverController(app, gameService, botService, winners));
         }
     }

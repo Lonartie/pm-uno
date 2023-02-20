@@ -38,7 +38,7 @@ public class GameTest extends ApplicationTest {
     }
 
     @Test
-    public void gameTest() {
+    public void gameMode1Test() {
         initRandom();
 
         // starting with setup screen
@@ -49,6 +49,104 @@ public class GameTest extends ApplicationTest {
         Point2D middleLeft = slider.localToScreen(slider.getLayoutBounds().getMinX(), slider.getLayoutBounds().getMinY());
         Point2D middleRight = slider.localToScreen(slider.getLayoutBounds().getMaxX(), slider.getLayoutBounds().getMaxY());
         drag(middleLeft.getX(), middleLeft.getY()).dropTo(middleRight.getX(), middleRight.getY());
+        clickOn("#playButton");
+
+        // screen changes to ingame screen
+        assertEquals("Ingame", stage.getTitle());
+
+        // check everyone has 7 cards
+        assertHasNCards(botCardBox(0), 7);
+        assertHasNCards(botCardBox(1), 7);
+        assertHasNCards(botCardBox(2), 7);
+        assertHasNCards(playerCardBox(), 7);
+
+        // discard pile has red reverse card
+        checkDiscardPile(CardColor.RED, Constants.REVERSE);
+
+        clickOn(nthCard(playerCardBox(), 0));
+
+        // player played yellow reverse card
+        assertHasNCards(playerCardBox(), 6);
+        checkDiscardPile(CardColor.YELLOW, Constants.REVERSE);
+
+        waitCycles(1);
+
+        // bot 3 played yellow reverse card
+        assertHasNCards(botCardBox(2), 6);
+        checkDiscardPile(CardColor.YELLOW, Constants.REVERSE);
+
+        clickOn(nthCard(playerCardBox(), 1));
+        // player played yellow 9
+        assertHasNCards(playerCardBox(), 5);
+        checkDiscardPile(CardColor.YELLOW, 9);
+
+        waitCycles(1);
+
+        // bot 1 played yellow 6
+        assertHasNCards(botCardBox(0), 6);
+        checkDiscardPile(CardColor.YELLOW, 6);
+
+        waitCycles(1);
+
+        // bot 2 played yellow 1
+        assertHasNCards(botCardBox(1), 6);
+        checkDiscardPile(CardColor.YELLOW, 1);
+
+        waitCycles(1);
+
+        // bot 3 played blue 1
+        assertHasNCards(botCardBox(2), 5);
+        checkDiscardPile(CardColor.BLUE, 1);
+
+        clickOn(nthCard(playerCardBox(), 0));
+        // player played blue 6
+        assertHasNCards(playerCardBox(), 4);
+        checkDiscardPile(CardColor.BLUE, 6);
+
+        waitCycles(1);
+
+        // bot 1 played wildcard and wished green
+        assertHasNCards(botCardBox(0), 5);
+        checkDiscardPile(CardColor.BLACK, Constants.WILD);
+        assertWishesColor(CardColor.GREEN);
+
+        waitCycles(1);
+
+        clickOn(nthCard(playerCardBox(), 1));
+        waitCycles(2);
+
+        clickOn(nthCard(playerCardBox(), 0));
+        wishColor(CardColor.YELLOW);
+        waitCycles(3);
+
+        clickOn(nthCard(playerCardBox(), 1));
+        waitCycles(3);
+
+        clickOn(nthCard(playerCardBox(), 0));
+
+        // check game is over
+        assertEquals("Game Over", stage.getTitle());
+        Text text = lookup("#stateText").queryAs(Text.class);
+
+        clickOn("#setupButton");
+
+        // screen changes to setup screen
+        assertEquals("Setup", stage.getTitle());
+    }
+
+    @Test
+    public void gameMode2Test() {
+        initRandom();
+
+        // starting with setup screen
+        assertEquals("Setup", stage.getTitle());
+
+        clickOn("#nameField").write("Lonartie");
+        Slider slider = lookup("#botsSlider").queryAs(Slider.class);
+        Point2D middleLeft = slider.localToScreen(slider.getLayoutBounds().getMinX(), slider.getLayoutBounds().getMinY());
+        Point2D middleRight = slider.localToScreen(slider.getLayoutBounds().getMaxX(), slider.getLayoutBounds().getMaxY());
+        drag(middleLeft.getX(), middleLeft.getY()).dropTo(middleRight.getX(), middleRight.getY());
+        clickOn("#modeComboBox").clickOn(Constants.GAME_MODE_2);
         clickOn("#playButton");
 
         // screen changes to ingame screen

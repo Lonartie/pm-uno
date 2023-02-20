@@ -15,6 +15,8 @@ public class Constants {
     public static final Map<Integer, String> CARD_NAMES = new HashMap<>();
     public static final long BOT_DELAY = 1000;
     public static final int INITIAL_CARD_COUNT = 7;
+    public static final String GAME_MODE_1 = "End on first win";
+    public static final String GAME_MODE_2 = "End on last win";
 
     static {
         for (CardColor color : Arrays.stream(CardColor.values())

@@ -10,10 +10,19 @@ import java.util.Random;
 public class GameService {
 
     private Random random = new Random();
+    private String gameMode = Constants.GAME_MODE_1;
 
     public GameService setRandom(Random random) {
         this.random = random;
         return this;
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
+    }
+
+    public String getGameMode() {
+        return gameMode;
     }
 
     public void startGame(Game game, String playerName, int botCount) {
@@ -26,7 +35,6 @@ public class GameService {
         }
 
         dealCards(game);
-        game.setDiscardPile(drawCard());
 
         if (requiresColorWish(game)) {
             game.setColorWish(CardColor.values()[random.nextInt(CardColor.values().length - 1)]);
@@ -43,7 +51,9 @@ public class GameService {
             if (!requiresColorWish(game)) {
                 nextPlayer(game, handleCardEffeckt(game, card));
                 if (hasPlayerWon(player)) {
-                    removePlayer(game, player);
+                    if (gameMode.equals(Constants.GAME_MODE_2)) {
+                        removePlayer(game, player);
+                    }
                     won = true;
                 }
             }
@@ -52,6 +62,13 @@ public class GameService {
     }
 
     public boolean isGameOver(Game game) {
+        if (gameMode.equals(Constants.GAME_MODE_1)) {
+            for (Player player : game.getPlayers()) {
+                if (hasPlayerWon(player)) {
+                    return true;
+                }
+            }
+        }
         return game.getPlayers().size() == 1;
     }
 
@@ -75,7 +92,9 @@ public class GameService {
         if (player == game.getCurrentPlayer() && requiresColorWish(game)) {
             game.setColorWish(color);
             if (hasPlayerWon(player)) {
-                removePlayer(game, player);
+                if (gameMode.equals(Constants.GAME_MODE_2)) {
+                    removePlayer(game, player);
+                }
                 won = true;
             }
             nextPlayer(game, 1);
@@ -148,6 +167,8 @@ public class GameService {
         for (Player player : game.getPlayers()) {
             player.withCards(drawCards(Constants.INITIAL_CARD_COUNT));
         }
+
+        game.setDiscardPile(drawCard());
     }
 
     private List<Card> drawCards(int amount) {
@@ -161,5 +182,14 @@ public class GameService {
     private Card drawCard() {
         Card randomCard = Constants.DECK.get(random.nextInt(Constants.DECK.size()));
         return new Card().setValue(randomCard.getValue()).setColor(randomCard.getColor());
+    }
+
+    public Player getWinner(Game game) {
+        for (Player player : game.getPlayers()) {
+            if (hasPlayerWon(player)) {
+                return player;
+            }
+        }
+        return null;
     }
 }
