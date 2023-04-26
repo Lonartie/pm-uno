@@ -9,7 +9,3 @@ Hello World
 System.out.println("Hello");
 ```
 
-### Other Title
-- Uno
-- UNO
-- UNO!
